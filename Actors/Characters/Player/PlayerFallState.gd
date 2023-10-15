@@ -21,8 +21,16 @@ func input(event: InputEvent):
 		return dash_state
 	if event.is_action_pressed("attack") && attack_state.available:
 		return attack_state
-	
+	return null
+
+func physics_process(delta):
 	dir = character.get_axis()
-	if dir.x != 0:
+	character.velocity.x = move_toward(character.velocity.x, character.stats.move_speed * dir.x, character.stats.air_acceleration)
+	if Input.is_action_pressed("ui_down"):
+		character.velocity.y = move_toward(character.velocity.y, character.stats.max_fall_speed*1.5, character.stats.gravity)
+	else:
+		character.velocity.y = move_toward(character.velocity.y, character.stats.max_fall_speed, character.stats.gravity)
+	character.move_and_slide()
+	if character.is_on_floor():
 		return run_state
 	return null

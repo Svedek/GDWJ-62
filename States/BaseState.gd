@@ -9,14 +9,14 @@ var dir: Vector2
 
 func enter(direction:Vector2):
 	dir = direction
-	character.set_blend_position(animation_name, dir)
-	character.play_animation(animation_name)
+	#character.set_blend_position(animation_name, dir)
+	#character.play_animation(animation_name)
 	
 func exit() -> Vector2:
 	return dir
 	
-func input(event):
-	pass
+func input(event) -> BaseState:
+	return null
 	
 func process(delta:float) -> BaseState:
 	return null

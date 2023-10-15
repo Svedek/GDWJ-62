@@ -13,7 +13,7 @@ extends BaseState
 @onready var jump_attack_state: BaseState = get_node(jump_attack_node)
 
 
-var jump_timer
+var jump_timer: Timer
 var jumping: bool = false
 
 
@@ -24,6 +24,7 @@ func _ready():
 func enter(direction:Vector2):
 	super.enter(direction)
 	jumping = true
+	jump_timer.start()
 	return null
 
 func exit() -> Vector2:
@@ -39,10 +40,10 @@ func physics_process(delta: float) -> BaseState:
 	dir = character.get_axis()
 	if !Input.is_action_pressed("jump") || !jumping:
 		if !Input.is_action_pressed("jump"):
-			character.velocity.y -= jump_velocity
+			character.velocity.y = 0
 		return run_state
 	
-	character.velocity.x = move_toward(character.velocity.x, character.stats.move_speed * dir, character.stats.air_friction)
+	character.velocity.x = move_toward(character.velocity.x, character.stats.move_speed * dir.x, character.stats.air_acceleration )
 	character.velocity.y = jump_velocity
 	
 	character.move_and_slide()
