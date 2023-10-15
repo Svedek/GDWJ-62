@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://2a7h5jo23jae"]
+
+[ext_resource type="Script" path="res://Actors/Characters/Player/player.gd" id="1_numbk"]
+[ext_resource type="Texture2D" uid="uid://kakwltxs2io8" path="res://Actors/Characters/Player/playerBase.png" id="2_8gfcf"]
+[ext_resource type="Script" path="res://States/StateManager.gd" id="3_amjlg"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerIdleState.gd" id="4_tk5fn"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerRunState.gd" id="5_6qo02"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerFallState.gd" id="6_1ibde"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerJumpState.gd" id="7_ccc2j"]
+[ext_resource type="Script" path="res://Actors/Characters/CharacterStats.gd" id="8_rymcj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_710d6"]
+radius = 6.0
+height = 28.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_numbk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_8gfcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_710d6")
+
+[node name="StateManager" type="Node" parent="."]
+script = ExtResource("3_amjlg")
+starting_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateManager"]
+script = ExtResource("4_tk5fn")
+run_node = NodePath("../RunState")
+fall_node = NodePath("../FallState")
+jump_node = NodePath("../JumpState")
+
+[node name="RunState" type="Node" parent="StateManager"]
+script = ExtResource("5_6qo02")
+idle_node = null
+fall_node = null
+jump_node = null
+dash_node = null
+attack_node = null
+animation_name = null
+
+[node name="FallState" type="Node" parent="StateManager"]
+script = ExtResource("6_1ibde")
+
+[node name="JumpState" type="Node" parent="StateManager"]
+script = ExtResource("7_ccc2j")
+
+[node name="DashState" type="Node" parent="StateManager"]
+
+[node name="AttackState" type="Node" parent="StateManager"]
+
+[node name="JumpAttackState" type="Node" parent="StateManager"]
+
+[node name="CharacterStats" type="Node" parent="."]
+script = ExtResource("8_rymcj")
+move_speed = 300.0
+
+[connection signal="death" from="CharacterStats" to="." method="_on_character_death"]
