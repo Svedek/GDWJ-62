@@ -9,6 +9,7 @@ var dir: Vector2
 
 func enter(direction:Vector2):
 	dir = direction
+	print("enter animation unimplemented")
 	#character.set_blend_position(animation_name, dir)
 	#character.play_animation(animation_name)
 	

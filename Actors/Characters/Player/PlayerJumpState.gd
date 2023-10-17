@@ -4,13 +4,13 @@ extends BaseState
 @export var jump_velocity: float = -250
 
 @export_category("State Transitions")
-@export var run_node: NodePath
+@export var fall_node: NodePath
 @export var dash_node: NodePath
-@export var jump_attack_node: NodePath
+@export var air_attack_node: NodePath
 
-@onready var run_state: BaseState = get_node(run_node)
+@onready var fall_state: BaseState = get_node(fall_node)
 @onready var dash_state: BaseState = get_node(dash_node)
-@onready var jump_attack_state: BaseState = get_node(jump_attack_node)
+@onready var air_attack_state: BaseState = get_node(air_attack_node)
 
 
 var jump_timer: Timer
@@ -33,15 +33,15 @@ func exit() -> Vector2:
 func input(event: InputEvent):
 	if event.is_action_pressed("dash") && dash_state.available:
 		return dash_state
-	if event.is_action_pressed("attack") && jump_attack_state.available:
-		return jump_attack_state
+	if event.is_action_pressed("attack") && air_attack_state.available:
+		return air_attack_state
 
 func physics_process(delta: float) -> BaseState:
 	dir = character.get_axis()
 	if !Input.is_action_pressed("jump") || !jumping:
 		if !Input.is_action_pressed("jump"):
 			character.velocity.y = 0
-		return run_state
+		return fall_state
 	
 	character.velocity.x = move_toward(character.velocity.x, character.stats.move_speed * dir.x, character.stats.air_acceleration )
 	character.velocity.y = jump_velocity

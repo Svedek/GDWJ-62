@@ -60,17 +60,9 @@ script = ExtResource("7_ccc2j")
 jump_time = 0.25
 jump_velocity = -320.0
 fall_node = NodePath("../FallState")
-dash_node = NodePath("../DashState")
-air_attack_node = NodePath("../AirAttackState")
 
 [node name="DashState" type="Node" parent="StateManager"]
 script = ExtResource("8_h645k")
-dash_time = 0.15
-run_node = NodePath("../RunState")
-fall_node = NodePath("../FallState")
-jump_node = NodePath("../JumpState")
-attack_node = NodePath("../AttackState")
-air_attack_node = NodePath("../AirAttackState")
 
 [node name="AttackState" type="Node" parent="StateManager"]
 script = ExtResource("9_jlsus")
