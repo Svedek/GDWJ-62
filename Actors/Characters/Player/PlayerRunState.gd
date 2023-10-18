@@ -27,6 +27,7 @@ func physics_process(delta):
 	if character.get_axis().x == 0.0:
 		return idle_state
 	dir = character.get_axis()
+	character.sprite.flip_h = dir.x < 0.0
 	character.velocity.x = move_toward(character.velocity.x, character.stats.move_speed * dir.x, character.stats.ground_acceleration)
 	character.move_and_slide()
 	if !character.is_on_floor():
