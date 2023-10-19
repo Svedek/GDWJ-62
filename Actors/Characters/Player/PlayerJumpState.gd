@@ -42,6 +42,7 @@ func physics_process(delta: float) -> BaseState:
 	dir = character.get_axis()
 	if !Input.is_action_pressed("jump") || !jumping:
 		if !Input.is_action_pressed("jump"):
+			jumping = false
 			character.velocity.y = 0
 		return fall_state
 	

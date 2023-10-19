@@ -15,9 +15,13 @@ extends BaseState
 @onready var dash_state: BaseState = get_node(dash_node)
 @onready var air_attack_state: BaseState = get_node(air_attack_node)
 
+var coyote_timer: Timer
+
+func _ready():
+	coyote_timer = create_timer(null, coyote_time)
 
 func input(event: InputEvent):
-	if event.is_action_pressed("jump") && jump_state.available:
+	if event.is_action_pressed("jump") && jump_state.available && !coyote_timer.is_stopped():
 		return jump_state
 	if event.is_action_pressed("dash") && dash_state.available:
 		return dash_state

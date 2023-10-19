@@ -31,5 +31,6 @@ func physics_process(delta):
 	character.velocity.x = move_toward(character.velocity.x, character.stats.move_speed * dir.x, character.stats.ground_acceleration)
 	character.move_and_slide()
 	if !character.is_on_floor():
+		fall_state.coyote_timer.start()
 		return fall_state
 	return null
