@@ -28,9 +28,11 @@ func _ready():
 
 func enter(direction:Vector2):
 	super.enter(direction)
+	if dir.x == 0:
+		dir.x = -1 if character.sprite.flip_h else 1
 	dashing = true
 	dash_timer.start()
-	
+	queued_input = null
 	return null
 	
 func input(event: InputEvent):

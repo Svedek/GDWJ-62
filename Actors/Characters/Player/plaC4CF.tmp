@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://2a7h5jo23jae"]
+[gd_scene load_steps=58 format=3 uid="uid://2a7h5jo23jae"]
 
 [ext_resource type="Script" path="res://Actors/Characters/Player/player.gd" id="1_numbk"]
 [ext_resource type="Texture2D" uid="uid://djln6747mn5yi" path="res://Actors/Characters/Player/playerSpriteSheet.png" id="2_d8bb4"]
@@ -33,7 +33,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSprite2D:visible")
+tracks/1/path = NodePath("Sprite2D/WeaponSprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -45,7 +45,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponSprite2D:frame")
+tracks/2/path = NodePath("Sprite2D/WeaponSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -73,7 +73,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSprite2D:visible")
+tracks/1/path = NodePath("Sprite2D/WeaponSprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -85,7 +85,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponSprite2D:frame")
+tracks/2/path = NodePath("Sprite2D/WeaponSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -113,7 +113,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSprite2D:visible")
+tracks/1/path = NodePath("Sprite2D/WeaponSprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -125,7 +125,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponSprite2D:frame")
+tracks/2/path = NodePath("Sprite2D/WeaponSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -316,8 +316,6 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r1meg"]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a3kkw"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vcrbb"]
 states/End/position = Vector2(666, 288)
 states/Start/position = Vector2(43, 176)
@@ -334,9 +332,9 @@ states/idle/position = Vector2(237, 176)
 states/jump/node = SubResource("AnimationNodeAnimation_rjj6p")
 states/jump/position = Vector2(43, 418)
 states/run/node = SubResource("AnimationNodeAnimation_88tgh")
-states/run/position = Vector2(460, 272)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1ydfj"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_ns07l"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_bpx2a"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_mdtow"), "fall", "run", SubResource("AnimationNodeStateMachineTransition_plp88"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_ap03f"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_hjnvl"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_skjvt"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_5xyac"), "fall", "air_attack", SubResource("AnimationNodeStateMachineTransition_ut82l"), "jump", "air_attack", SubResource("AnimationNodeStateMachineTransition_cpjy7"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_nnsx0"), "run", "dash", SubResource("AnimationNodeStateMachineTransition_amdkj"), "fall", "dash", SubResource("AnimationNodeStateMachineTransition_lge63"), "jump", "dash", SubResource("AnimationNodeStateMachineTransition_mqrrx"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_570vh"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_ilfut"), "attack", "fall", SubResource("AnimationNodeStateMachineTransition_ebbr1"), "air_attack", "fall", SubResource("AnimationNodeStateMachineTransition_serit"), "air_attack", "run", SubResource("AnimationNodeStateMachineTransition_wocgg"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_uuuf8"), "dash", "run", SubResource("AnimationNodeStateMachineTransition_rc3qv"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_hi1ak"), "dash", "fall", SubResource("AnimationNodeStateMachineTransition_574jk"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_u6fqe"), "fall", "attack", SubResource("AnimationNodeStateMachineTransition_le21l"), "air_attack", "idle", SubResource("AnimationNodeStateMachineTransition_r1meg"), "attack", "air_attack", SubResource("AnimationNodeStateMachineTransition_a3kkw")]
-graph_offset = Vector2(-7, 172)
+states/run/position = Vector2(525, 272)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1ydfj"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_ns07l"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_bpx2a"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_mdtow"), "fall", "run", SubResource("AnimationNodeStateMachineTransition_plp88"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_ap03f"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_hjnvl"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_skjvt"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_5xyac"), "fall", "air_attack", SubResource("AnimationNodeStateMachineTransition_ut82l"), "jump", "air_attack", SubResource("AnimationNodeStateMachineTransition_cpjy7"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_nnsx0"), "run", "dash", SubResource("AnimationNodeStateMachineTransition_amdkj"), "fall", "dash", SubResource("AnimationNodeStateMachineTransition_lge63"), "jump", "dash", SubResource("AnimationNodeStateMachineTransition_mqrrx"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_570vh"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_ilfut"), "attack", "fall", SubResource("AnimationNodeStateMachineTransition_ebbr1"), "air_attack", "fall", SubResource("AnimationNodeStateMachineTransition_serit"), "air_attack", "run", SubResource("AnimationNodeStateMachineTransition_wocgg"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_uuuf8"), "dash", "run", SubResource("AnimationNodeStateMachineTransition_rc3qv"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_hi1ak"), "dash", "fall", SubResource("AnimationNodeStateMachineTransition_574jk"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_u6fqe"), "fall", "attack", SubResource("AnimationNodeStateMachineTransition_le21l"), "air_attack", "idle", SubResource("AnimationNodeStateMachineTransition_r1meg")]
+graph_offset = Vector2(-224, 182)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 8
@@ -348,9 +346,9 @@ texture = ExtResource("2_d8bb4")
 hframes = 4
 vframes = 7
 
-[node name="WeaponSprite2D" type="Sprite2D" parent="."]
+[node name="WeaponSprite2D" type="Sprite2D" parent="Sprite2D"]
 visible = false
-position = Vector2(16, -16)
+position = Vector2(16, 0)
 texture = ExtResource("3_qwyme")
 hframes = 3
 
@@ -391,6 +389,8 @@ animation_name = "fall"
 
 [node name="JumpState" type="Node" parent="StateManager"]
 script = ExtResource("7_ccc2j")
+jump_time = 0.25
+jump_velocity = -320.0
 fall_node = NodePath("../FallState")
 dash_node = NodePath("../DashState")
 air_attack_node = NodePath("../AirAttackState")
@@ -408,30 +408,19 @@ animation_name = "dash"
 
 [node name="AttackState" type="Node" parent="StateManager"]
 script = ExtResource("9_jlsus")
-idle_node = NodePath("../IdleState")
-run_node = NodePath("../RunState")
-fall_node = NodePath("../FallState")
-jump_attack_node = NodePath("../AirAttackState")
 animation_name = "attack"
 
 [node name="AirAttackState" type="Node" parent="StateManager"]
 script = ExtResource("10_3qemg")
-idle_node = NodePath("../IdleState")
-run_node = NodePath("../RunState")
-fall_node = NodePath("../FallState")
-jump_node = NodePath("../JumpState")
 animation_name = "air_attack"
 
 [node name="CharacterStats" type="Node" parent="."]
-unique_name_in_owner = true
 script = ExtResource("8_rymcj")
 move_speed = 300.0
-ground_acceleration = 60.0
-air_acceleration = 30.0
 gravity = 40.0
 max_fall_speed = 400.0
-jump_time = 0.3
-jump_velocity = -275.0
+ground_acceleration = 60.0
+air_acceleration = 30.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

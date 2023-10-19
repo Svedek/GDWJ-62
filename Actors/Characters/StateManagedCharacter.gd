@@ -5,7 +5,7 @@ class_name StateManagedCharacter
 @onready var stats: CharacterStats = $CharacterStats
 @onready var state_manager: StateManager = $StateManager
 @onready var animation_playback: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
-
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 func _ready():
 	state_manager.init(self)

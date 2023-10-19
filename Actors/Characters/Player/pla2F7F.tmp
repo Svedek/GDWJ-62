@@ -347,6 +347,7 @@ position = Vector2(0, -16)
 texture = ExtResource("2_d8bb4")
 hframes = 4
 vframes = 7
+frame = 1
 
 [node name="WeaponSprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -419,7 +420,6 @@ script = ExtResource("10_3qemg")
 idle_node = NodePath("../IdleState")
 run_node = NodePath("../RunState")
 fall_node = NodePath("../FallState")
-jump_node = NodePath("../JumpState")
 animation_name = "air_attack"
 
 [node name="CharacterStats" type="Node" parent="."]
@@ -430,8 +430,6 @@ ground_acceleration = 60.0
 air_acceleration = 30.0
 gravity = 40.0
 max_fall_speed = 400.0
-jump_time = 0.3
-jump_velocity = -275.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
