@@ -12,25 +12,23 @@ extends BaseState
 @onready var run_state: BaseState = get_node(run_node)
 @onready var fall_state: BaseState = get_node(fall_node)
 @onready var jump_attack_state: BaseState = get_node(jump_attack_node)
-@onready var weapon_sprite_2d:Sprite2D = $"../../WeaponSprite2D"
 
 var attack_timer: Timer
 var attacking: bool = false
-var weapon_sprite_offset:float
 
 
 func _ready():
 	var  end_attack = func(): attacking = false
 	attack_timer = create_timer(end_attack, attack_time)
-	weapon_sprite_offset = weapon_sprite_2d.position.x
 
 func enter(direction:Vector2):
 	super.enter(direction)
+	if character.get_axis() != Vector2.ZERO:
+		dir = character.get_axis()
+		character.sprite.flip_h = false if dir.x > 0.0 else true
+	character.weapon_container.x_flipped = character.sprite.flip_h
 	attacking = true
 	attack_timer.start()
-	weapon_sprite_2d.flip_h = character.sprite.flip_h
-	weapon_sprite_2d.show_behind_parent = character.sprite.flip_h
-	weapon_sprite_2d.position.x = -weapon_sprite_offset if character.sprite.flip_h else weapon_sprite_offset
 	return null
 
 func input(event: InputEvent):

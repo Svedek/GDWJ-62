@@ -27,9 +27,6 @@ func enter(direction:Vector2):
 		jumping = true
 		jump_timer.start(%CharacterStats.jump_time)
 	return null
-
-func exit() -> Vector2:
-	return dir
 	
 func input(event: InputEvent):
 	if event.is_action_pressed("dash") && dash_state.available:

@@ -1,7 +1,7 @@
 extends Node
 class_name CharacterStats
 
-signal death
+signal on_character_death
 
 @export var move_speed: float = 250.0
 @export var ground_acceleration: float = 40
@@ -20,4 +20,4 @@ signal death
 			on_death()
 			
 func on_death():
-	emit_signal("death")
+	emit_signal("on_character_death")

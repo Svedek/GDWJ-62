@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7bggmsuhcp6n"]
+
+[ext_resource type="Texture2D" uid="uid://1oipa5gvnahm" path="res://UI/health_full.png" id="1_ogwkp"]
+[ext_resource type="Script" path="res://UI/HealthBox.gd" id="1_y1gu5"]
+
+[node name="GameplayUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="HealthHBox" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_y1gu5")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/HealthHBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_ogwkp")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+text = "TIME UNTIL SUNRISE
+XX:XX"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

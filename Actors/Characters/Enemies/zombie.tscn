@@ -1,0 +1,232 @@
+[gd_scene load_steps=29 format=3 uid="uid://dv3ob08otd8fi"]
+
+[ext_resource type="Script" path="res://Actors/Characters/Enemies/Enemy.gd" id="1_5cj8r"]
+[ext_resource type="Texture2D" uid="uid://d4ihkrj7wqmna" path="res://Actors/Characters/Player/zombieSpriteSheet.png" id="2_ddakn"]
+[ext_resource type="Script" path="res://States/StateManager.gd" id="3_7b0pd"]
+[ext_resource type="PackedScene" uid="uid://dfv24cdhtfy14" path="res://Overlap/hurtbox.tscn" id="3_36jhd"]
+[ext_resource type="Script" path="res://Actors/Characters/WeaponContainer.gd" id="3_eh1wc"]
+[ext_resource type="Script" path="res://Actors/Characters/Enemies/Vision.gd" id="3_o7nms"]
+[ext_resource type="Script" path="res://Actors/Characters/Enemies/EnemyIdle.gd" id="4_feeeo"]
+[ext_resource type="PackedScene" uid="uid://cs84b0v7iwlrr" path="res://Overlap/hitbox.tscn" id="5_ntah1"]
+[ext_resource type="Script" path="res://Actors/Characters/Enemies/EnemyChaseState.gd" id="5_xbged"]
+[ext_resource type="PackedScene" uid="uid://yt0m207meh2l" path="res://Actors/Characters/character_stats.tscn" id="6_rmu4f"]
+[ext_resource type="Script" path="res://Actors/Characters/Enemies/EnemyAttackState.gd" id="9_5hnvb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5cxp"]
+size = Vector2(10, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sbwcg"]
+radius = 13.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srpe8"]
+size = Vector2(8, 28)
+
+[sub_resource type="Animation" id="Animation_6ofj5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponContainer/Hitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lvhkg"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponContainer/Hitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_01m68"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_6uv66"]
+resource_name = "run"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k5fvr"]
+_data = {
+"RESET": SubResource("Animation_6ofj5"),
+"attack": SubResource("Animation_lvhkg"),
+"idle": SubResource("Animation_01m68"),
+"run": SubResource("Animation_6uv66")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pun3m"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_slxtn"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vprpc"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_htkc5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u68pw"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_08a7k"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r37uj"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aa8lw"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_whdyx"]
+states/attack/node = SubResource("AnimationNodeAnimation_pun3m")
+states/attack/position = Vector2(403, 166)
+states/idle/node = SubResource("AnimationNodeAnimation_slxtn")
+states/idle/position = Vector2(545, 52)
+states/run/node = SubResource("AnimationNodeAnimation_vprpc")
+states/run/position = Vector2(680, 166)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_htkc5"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_u68pw"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_08a7k"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_r37uj"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_aa8lw")]
+
+[node name="Zombie" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_5cj8r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, -16)
+texture = ExtResource("2_ddakn")
+hframes = 4
+vframes = 3
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_36jhd")]
+modulate = Color(0, 1, 0, 1)
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_o5cxp")
+
+[node name="WeaponContainer" type="Node2D" parent="."]
+script = ExtResource("3_eh1wc")
+
+[node name="Hitbox" parent="WeaponContainer" instance=ExtResource("5_ntah1")]
+collision_mask = 64
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponContainer/Hitbox"]
+position = Vector2(6, -17)
+shape = SubResource("CircleShape2D_sbwcg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_srpe8")
+
+[node name="StateManager" type="Node" parent="."]
+script = ExtResource("3_7b0pd")
+starting_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateManager"]
+script = ExtResource("4_feeeo")
+run_node = NodePath("../ChaseState")
+animation_name = "idle"
+
+[node name="ChaseState" type="Node" parent="StateManager"]
+script = ExtResource("5_xbged")
+idle_node = NodePath("../IdleState")
+attack_node = NodePath("../AttackState")
+animation_name = "run"
+
+[node name="AttackState" type="Node" parent="StateManager"]
+script = ExtResource("9_5hnvb")
+run_node = NodePath("../ChaseState")
+animation_name = "attack"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k5fvr")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_whdyx")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="Vision" type="Marker2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("3_o7nms")
+vision_distance = 200.0
+raycast_count = 32
+vision_mask = 17
+target_mask = 16
+
+[node name="CharacterStats" parent="." instance=ExtResource("6_rmu4f")]
+unique_name_in_owner = true
+move_speed = 200.0
+ground_acceleration = 20.0
+air_acceleration = 10.0
+max_health = 2
+
+[connection signal="on_damaged" from="Hurtbox" to="." method="_on_hurtbox_on_damaged"]
+[connection signal="target_found" from="Vision" to="." method="_on_vision_target_found"]
+[connection signal="target_lost" from="Vision" to="." method="_on_vision_target_lost"]
+[connection signal="on_character_death" from="CharacterStats" to="." method="_on_character_death"]

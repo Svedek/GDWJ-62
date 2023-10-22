@@ -1,20 +1,30 @@
-[gd_scene load_steps=59 format=3 uid="uid://2a7h5jo23jae"]
+[gd_scene load_steps=64 format=3 uid="uid://2a7h5jo23jae"]
 
 [ext_resource type="Script" path="res://Actors/Characters/Player/player.gd" id="1_numbk"]
 [ext_resource type="Texture2D" uid="uid://djln6747mn5yi" path="res://Actors/Characters/Player/playerSpriteSheet.png" id="2_d8bb4"]
+[ext_resource type="PackedScene" uid="uid://dfv24cdhtfy14" path="res://Overlap/hurtbox.tscn" id="3_1hr77"]
+[ext_resource type="Script" path="res://Actors/Characters/WeaponContainer.gd" id="3_1l6mn"]
 [ext_resource type="Script" path="res://States/StateManager.gd" id="3_amjlg"]
 [ext_resource type="Texture2D" uid="uid://cyaldo0jvwt58" path="res://Actors/Characters/Player/scythe.png" id="3_qwyme"]
 [ext_resource type="Script" path="res://Actors/Characters/Player/PlayerIdleState.gd" id="4_tk5fn"]
 [ext_resource type="Script" path="res://Actors/Characters/Player/PlayerRunState.gd" id="5_6qo02"]
+[ext_resource type="PackedScene" uid="uid://cs84b0v7iwlrr" path="res://Overlap/hitbox.tscn" id="5_55fdf"]
 [ext_resource type="Script" path="res://Actors/Characters/Player/PlayerFallState.gd" id="6_1ibde"]
 [ext_resource type="Script" path="res://Actors/Characters/Player/PlayerJumpState.gd" id="7_ccc2j"]
 [ext_resource type="Script" path="res://Actors/Characters/Player/PlayerDashState.gd" id="8_h645k"]
-[ext_resource type="Script" path="res://Actors/Characters/CharacterStats.gd" id="8_rymcj"]
 [ext_resource type="Script" path="res://Actors/Characters/Player/PlayerAttackState.gd" id="9_jlsus"]
 [ext_resource type="Script" path="res://Actors/Characters/Player/PlayerAirAttackState.gd" id="10_3qemg"]
+[ext_resource type="PackedScene" uid="uid://yt0m207meh2l" path="res://Actors/Characters/character_stats.tscn" id="12_k615u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v01jt"]
 size = Vector2(10, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd5a5"]
+size = Vector2(10, 27)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1mgpa"]
+radius = 18.0
+height = 64.0
 
 [sub_resource type="Animation" id="Animation_loahy"]
 length = 0.001
@@ -33,7 +43,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSprite2D:visible")
+tracks/1/path = NodePath("WeaponContainer/WeaponSprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -45,7 +55,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponSprite2D:frame")
+tracks/2/path = NodePath("WeaponContainer/WeaponSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -53,6 +63,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponContainer/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurtbox:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_2wo42"]
@@ -73,7 +107,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSprite2D:visible")
+tracks/1/path = NodePath("WeaponContainer/WeaponSprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -85,7 +119,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponSprite2D:frame")
+tracks/2/path = NodePath("WeaponContainer/WeaponSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -93,6 +127,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponContainer/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_42g1g"]
@@ -113,7 +159,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponSprite2D:visible")
+tracks/1/path = NodePath("WeaponContainer/WeaponSprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -125,7 +171,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WeaponSprite2D:frame")
+tracks/2/path = NodePath("WeaponContainer/WeaponSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -133,6 +179,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponContainer/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_b3sv2"]
@@ -149,6 +207,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [16, 17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_g40ur"]
@@ -339,7 +409,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-7, 172)
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 8
+collision_layer = 24
 script = ExtResource("1_numbk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -348,15 +418,36 @@ texture = ExtResource("2_d8bb4")
 hframes = 4
 vframes = 7
 
-[node name="WeaponSprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(16, -16)
-texture = ExtResource("3_qwyme")
-hframes = 3
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_v01jt")
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_1hr77")]
+modulate = Color(0, 1, 0, 1)
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -14.5)
+shape = SubResource("RectangleShape2D_dd5a5")
+
+[node name="WeaponContainer" type="Node2D" parent="."]
+script = ExtResource("3_1l6mn")
+
+[node name="WeaponSprite2D" type="Sprite2D" parent="WeaponContainer"]
+visible = false
+position = Vector2(16, -16)
+texture = ExtResource("3_qwyme")
+centered = false
+offset = Vector2(-32, -32)
+hframes = 3
+
+[node name="Hitbox" parent="WeaponContainer" instance=ExtResource("5_55fdf")]
+position = Vector2(27, -14)
+collision_mask = 128
+monitoring = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WeaponContainer/Hitbox"]
+shape = SubResource("CapsuleShape2D_1mgpa")
 
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource("3_amjlg")
@@ -422,16 +513,9 @@ fall_node = NodePath("../FallState")
 jump_node = NodePath("../JumpState")
 animation_name = "air_attack"
 
-[node name="CharacterStats" type="Node" parent="."]
+[node name="CharacterStats" parent="." instance=ExtResource("12_k615u")]
 unique_name_in_owner = true
-script = ExtResource("8_rymcj")
-move_speed = 300.0
-ground_acceleration = 60.0
-air_acceleration = 30.0
-gravity = 40.0
-max_fall_speed = 400.0
-jump_time = 0.3
-jump_velocity = -275.0
+max_health = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -443,4 +527,5 @@ tree_root = SubResource("AnimationNodeStateMachine_vcrbb")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 
-[connection signal="death" from="CharacterStats" to="." method="_on_character_death"]
+[connection signal="on_damaged" from="Hurtbox" to="." method="_on_hurtbox_on_damaged"]
+[connection signal="on_character_death" from="CharacterStats" to="." method="_on_character_death"]

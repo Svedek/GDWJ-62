@@ -12,11 +12,9 @@ extends BaseState
 @onready var run_state: BaseState = get_node(run_node)
 @onready var fall_state: BaseState = get_node(fall_node)
 @onready var jump_state: BaseState = get_node(jump_node)
-@onready var weapon_sprite_2d:Sprite2D = $"../../WeaponSprite2D"
 
 var attack_timer: Timer
 var attacking: bool = false
-var weapon_sprite_offset:float
 var jump_timer: Timer
 var jumping: bool = false
 var jump_time_remaining: float = 0.25:
@@ -32,7 +30,6 @@ func _ready():
 	jump_timer = create_timer(end_jump, %CharacterStats.jump_time)
 	var  end_attack = func(): attacking = false
 	attack_timer = create_timer(end_attack, attack_time)
-	weapon_sprite_offset = weapon_sprite_2d.position.x
 
 func enter(direction:Vector2):
 	dir = direction
@@ -41,9 +38,10 @@ func enter(direction:Vector2):
 	attacking = true
 	attack_timer.start(attack_time - attack_time_advance)
 	attack_time_advance = 0.0
-	weapon_sprite_2d.flip_h = character.sprite.flip_h
-	weapon_sprite_2d.show_behind_parent = character.sprite.flip_h
-	weapon_sprite_2d.position.x = -weapon_sprite_offset if character.sprite.flip_h else weapon_sprite_offset
+	if character.get_axis() != Vector2.ZERO:
+		dir = character.get_axis()
+		character.sprite.flip_h = false if dir.x > 0.0 else true
+	character.weapon_container.x_flipped = character.sprite.flip_h
 	return null
 
 func physics_process(delta: float) -> BaseState:

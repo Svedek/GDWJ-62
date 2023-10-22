@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://yt0m207meh2l"]
+
+[ext_resource type="Script" path="res://Actors/Characters/CharacterStats.gd" id="1_al1d7"]
+
+[node name="CharacterStats" type="Node"]
+script = ExtResource("1_al1d7")
+move_speed = 300.0
+ground_acceleration = 60.0
+air_acceleration = 30.0
+gravity = 40.0
+max_fall_speed = 400.0
+jump_time = 0.3
+jump_velocity = -275.0
